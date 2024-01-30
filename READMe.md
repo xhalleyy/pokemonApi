@@ -5,4 +5,4 @@ Halley Pham
 Pokemon API Challenge
 
 Descriptions: 
-- 1/30: Installed tailwind. Designed the layout. Fetched the API and got it to show up on the console.
+- 1/30: Installed tailwind. Designed the layout. Fetched APIs and got it to show up on the console.

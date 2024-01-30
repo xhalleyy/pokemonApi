@@ -1,3 +1,5 @@
+import { saveToLocal, getLocal, removeFromLocal } from "./localstorage.js";
+
 // IDs
 let randomBtn = document.getElementById('randomBtn');
 let inputField = document.getElementById('inputField');
@@ -11,8 +13,12 @@ let abilitiesTxt = document.getElementById('abilitiesTxt');
 let movesTxt = document.getElementById('movesTxt');
 let locationTxt = document.getElementById('locationTxt');
 let evolutions = document.getElementById('evolutions');
+let modalID = document.getElementById('modalID');
 
-// API call
+let pokemon = "";
+
+// API calls
+// pokemonApi grabs basic info but no evolution chain, but gives ID. With that ID, we can search for species. Species links to evolution chain API
 const pokemonApi = async (pokemon) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     const data = await promise.json();
@@ -20,8 +26,33 @@ const pokemonApi = async (pokemon) => {
     return data;
 }
 
-pokemonApi("ditto");
+const speciesApi = async (id) => {
+    const promise = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
+    const data = await promise.json();
+    return data;
+}
+
+const evolutionApi = async (evolutionID) => {
+    const promise = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${evolutionID}/`);
+    const data = await promise.json();
+    return data; 
+}
+
+// pokemonApi("ditto");
 
 searchBtn.addEventListener('click', async ()=> {
+    
+    try 
+    {
+        pokemon = await pokemonApi(inputField.value);
+    } 
+    catch 
+    {
+        // modalID.show();
+    }
+    
+});
 
+heartBtn.addEventListener('click', () => {
+    saveToLocal(pokemon.name);
 });
