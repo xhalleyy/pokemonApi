@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/src/output.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body style="background: url(../assets/bulbasaur-3200x2000-12449.jpg) no-repeat center center fixed; background-size: cover;">
+
+    <!-- TITLE AND SEARCH BAR -->
+    <div class="grid grid-cols-2 mt-10">
+        <div class="ms-6">
+            <img src="../assets/title.png" class="xl:w-1/2 lg:w-3/5" alt="Pokedex Title Logo">
+        </div>
+        <div class="col-span-1 flex justify-end items-center">
+            <img id="randomBtn" src="../assets/pokeball.png" alt="pokeball image that's a button that grabs a random pokemon" style="width: 70px;">
+            <div class="bg-white rounded-md border-2 border-black">
+                <input id="inputField" text="text" placeholder="Enter a Pokemon" class="font-kodchasan-semi text-3xl ps-2 text-gray-400 lg:w-64 xl:w-80">
+            </div>
+            <div id="searchBtn" class="bg-yellow-200 border-2 border-black px-2 rounded-md mx-3">
+                <p class="font-kodchasan-medium text-3xl">Search</p>
+            </div>
+            <div id="favoritesBtn" class="bg-sky-200 border-2 border-black px-2 rounded-md me-14">
+                <p class="font-kodchasan-medium text-3xl">Favorites</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-5 mt-5">
+        <div class="col-span-2">
+            <div class="ms-20 bg-white/90 rounded-lg">
+                <div class="grid grid-cols-2 px-10 items-center pt-3">
+                    <div class="col-span-1">
+                        <h1 id="pokeName" class="font-kodchasan-semi text-6xl">Sylveon</h1>
+                    </div>
+                    <div class="col-span-1 text-end">
+                        <span id="heartBtn" class="material-symbols-outlined" style="font-size: 40px;">
+                            favorite
+                            </span>
+                    </div>
+                </div>
+                <div class="flex justify-center">
+                    <img id="pokeImg" class="xl:h-96" src="../assets/example.png" alt="">
+                </div>
+                <div id="elements">
+                    <p class="inline-block bg-pink-200 px-8 mx-5 mt-2 mb-5 font-kodchasan-medium lg:text-xl rounded-2xl">Fairy</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-span-3 me-20 ms-10">
+            <div class="bg-pink-200 rounded-lg">
+                <div>Abilities
+                    <p id="abilitiesTxt"></p>
+                </div>
+                <div>Powers
+                    <p id="movesTxt"></p>
+                </div>
+                <div>Locations
+                    <p id="locationTxt"></p>
+                </div>
+            </div>
+            <div class="bg-sky-200 rounded-lg mt-8">
+                <div>Game Evolution
+                    <p id="evolutions"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../scripts/app.js"></script>
+</body>
+</html>
