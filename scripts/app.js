@@ -33,17 +33,17 @@ const locationApi = async (location) => {
     return data;
 }
 
-// const speciesApi = async (id) => {
-//     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon-species/${id}/`);
-//     const data = await promise.json();
-//     return data;
-// }
+const speciesApi = async (species) => {
+    const promise = await fetch(species);
+    const data = await promise.json();
+    return data;
+}
 
-// const evolutionApi = async (evolutionID) => {
-//     const promise = await fetch(`https://pokeapi.co/api/v2/evolution-chain/${evolutionID}/`);
-//     const data = await promise.json();
-//     return data; 
-// }
+const evolutionApi = async (evolution) => {
+    const promise = await fetch(evolution);
+    const data = await promise.json();
+    return data; 
+}
 
 // pokemonApi("ditto");
 
@@ -53,10 +53,28 @@ searchBtn.addEventListener('click', async ()=> {
     {
         pokemon = await pokemonApi(inputField.value);
         let pokeLocation = await locationApi(pokemon.location_area_encounters);
+        let species = await speciesApi(pokemon.species.url);
+        let evolution = await evolutionApi(species.evolution_chain.url);
 
-        console.log(pokemon.location_area_encounters);
-        console.log(pokemon);
+        let evolArray = [];
+        let evolChain = evolution.chain;
 
+        evolChain.evolves_to.map(evol1 => {
+            evol1.evolves_to.map(evol2 => {
+                evolArray.push(evol2.species.name);
+            });
+            evolArray.push(evol1.species.name);
+        });
+
+        evolArray.push(evolChain.species.name);
+
+        // console.log(pokemon.location_area_encounters);
+        // console.log(pokemon);
+        // console.log(species);
+        console.log(evolution);
+        // console.log(evolChain);
+        console.log(evolArray);
+        
         pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
         abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
         movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ");
