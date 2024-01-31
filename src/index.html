@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokéDex</title>
+    <link rel="icon" href="../assets/pokeball.png">
     <link rel="stylesheet" href="/src/output.css">
     <link rel="stylesheet" href="../styles/style.css">
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" /> -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" /> -->
 </head>
 
@@ -17,11 +18,13 @@
     <!-- TITLE AND SEARCH BAR -->
     <div class="grid grid-cols-2 mt-10">
         <div class="ms-6">
-            <img src="../assets/title.png" class="xl:w-1/2 lg:w-3/5" alt="Pokedex Title Logo">
+            <a href="./index.html">
+                <img src="../assets/title.png" class="xl:w-1/2 lg:w-3/5 cursor-pointer" alt="Pokedex Title Logo">
+            </a>
         </div>
         <div class="col-span-1 flex justify-end items-center">
             <div class="tooltip">
-                <img id="randomBtn" src="../assets/pokeball.png"
+                <img id="randomBtn" class="cursor-pointer" src="../assets/pokeball.png"
                     alt="pokeball image that's a button that grabs a random pokemon" style="width: 70px;">
                 <span class="tooltiptext font-kodchasan-reg xl:text-xl">Random Pokemon</span>
             </div>
@@ -29,7 +32,7 @@
                 <input id="inputField" text="text" placeholder="Enter a Pokemon"
                     class="font-kodchasan-semi text-3xl ps-2 text-gray-400 lg:w-64 xl:w-80">
             </div>
-            <div id="searchBtn" class="bg-yellow-200 border-2 border-black px-2 rounded-md mx-3">
+            <div id="searchBtn" class="cursor-pointer bg-yellow-200 border-2 border-black px-2 rounded-md mx-3">
                 <p class="font-kodchasan-medium text-3xl">Search</p>
             </div>
             <div id="favoritesBtn" class="me-14">
@@ -54,7 +57,7 @@
                         <!-- <span id="heartBtn" class="material-symbols-outlined" style="font-size: 40px;">
                             favorite
                             </span> -->
-                        <svg id="heartBtn" class="xl:w-12 w-8" xmlns="http://www.w3.org/2000/svg"
+                        <svg id="heartBtn" class="xl:w-12 w-8 cursor-pointer" xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 -960 960 960">
                             <path
                                 d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
@@ -62,10 +65,10 @@
                     </div>
                 </div>
                 <div class="flex justify-center">
-                    <img id="pokeImg" class="xl:h-96" src="../assets/example.png" alt="">
+                    <img id="pokeImg" class="xl:h-96 cursor-pointer" src="../assets/example.png" alt="">
                 </div>
-                <div id="elements">
-                    <p
+                <div>
+                    <p id="elements"
                         class="inline-block bg-pink-200 px-8 mx-5 mt-2 mb-5 font-kodchasan-medium lg:text-xl rounded-2xl">
                         Fairy</p>
                 </div>
@@ -121,8 +124,8 @@
                 </div>
             </div>
             <div class="bg-sky-200 rounded-lg mt-8">
-                <div class="px-5 py-3 font-kodchasan-medium xl:text-3xl text-gray-800 dark:text-gray-400">Game Evolution
-                    <p id="evolutions" class="pt-2"></p>
+                <div class="px-5 py-3 font-kodchasan-medium xl:text-3xl text-gray-800 dark:text-gray-400">Evolution Paths
+                    <p id="evolutions" class="font-kodchasan-reg xl:text-xl text-gray-800 dark:text-gray-400 pt-2"></p>
                 </div>
             </div>
         </div>
@@ -130,15 +133,12 @@
 
     <!-- drawer component -->
     <div id="drawer-example"
-        class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-white w-80 dark:bg-gray-800"
+        class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-sky-200 w-80 dark:bg-gray-800 items-center"
         tabindex="-1" aria-labelledby="drawer-label">
         <h5 id="drawer-label"
-            class="inline-flex items-center mb-4 text-base font-semibold text-gray-500 dark:text-gray-400"><svg
-                class="w-4 h-4 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                viewBox="0 0 20 20">
-                <path
-                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
-            </svg>Favorites</h5>
+            class="font-kodchasan-semi xl:text-3xl inline-flex items-center mb-4 text-gray-800 dark:text-gray-400 ">
+            Favorites
+        </h5>
         <button type="button" data-drawer-hide="drawer-example" aria-controls="drawer-example"
             class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 absolute top-2.5 end-2.5 flex items-center justify-center dark:hover:bg-gray-600 dark:hover:text-white">
             <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">

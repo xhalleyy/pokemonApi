@@ -42,15 +42,17 @@ const speciesApi = async (species) => {
 const evolutionApi = async (evolution) => {
     const promise = await fetch(evolution);
     const data = await promise.json();
-    return data; 
+    return data;
 }
 
-// pokemonApi("ditto");
-
-searchBtn.addEventListener('click', async ()=> {
+// randomBtn.addEventListener('click', async() => {
     
-    try 
-    {
+// });
+
+searchBtn.addEventListener('click', async () => {
+
+    try {
+        
         pokemon = await pokemonApi(inputField.value);
         let pokeLocation = await locationApi(pokemon.location_area_encounters);
         let species = await speciesApi(pokemon.species.url);
@@ -59,50 +61,62 @@ searchBtn.addEventListener('click', async ()=> {
         let evolArray = [];
         let evolChain = evolution.chain;
 
+        // evolArray.push(evolChain.species.name);
+        // evolArray.push('→');
         evolChain.evolves_to.map(evol1 => {
-            evol1.evolves_to.map(evol2 => {
-                evolArray.push(evol2.species.name);
-            });
-            evolArray.push(evol1.species.name);
+            evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
         });
 
-        evolArray.push(evolChain.species.name);
-
-        // console.log(pokemon.location_area_encounters);
-        // console.log(pokemon);
+        if(evolChain.evolves_to.map(evol1 => evol1.evolves_to).length !== 0){
+            evolArray.push('→');
+            evolChain.evolves_to.map(evol1 => {
+                evol1.evolves_to.map(evol2 => 
+                    evolArray.push(evol2.species.name));
+            });
+        }
+        
+        console.log(pokemon);
         // console.log(species);
         console.log(evolution);
         // console.log(evolChain);
         console.log(evolArray);
-        
+        // <span class="material-symbols-outlined">
+        //     arrow_forward
+        // </span>
+
         pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
         abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
         movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ");
         elements.textContent = pokemon.types.map(pokeEl => pokeEl.type.name).join(" ");
-        pokeImg.src = pokeImg.src = pokemon.sprites.front_default;
+        pokeImg.src = pokemon.sprites.other["official-artwork"].front_default;
 
-        
-        if(pokeLocation.length == 0)
-        {
-            locationTxt.textContent = 'N/A';
-        }else{
+
+        if (pokeLocation.length == 0) {
+            locationTxt.textContent = 'Unknown';
+        } else {
             locationTxt.textContent = (pokeLocation[0].location_area.name).split('-').join(' ');
         }
 
-        pokeImg.addEventListener('click', ()=> {
-            if(shiny){
-                pokeImg.src = pokemon.sprites.front_shiny;
-            }else{
-                pokeImg.src = pokemon.sprites.front_default;
+        if(evolChain.evolves_to.length == 0) {
+            evolutions.textContent = 'N/A';
+        }else{
+            evolutions.textContent = evolArray.join(', ');
+        }
+
+        pokeImg.addEventListener('click', () => {
+            if (shiny) {
+                pokeImg.src = pokemon.sprites.other["official-artwork"].front_shiny;
+            } else {
+                pokeImg.src = pokemon.sprites.other["official-artwork"].front_default;
             }
             shiny = !shiny;
         });
-    } 
-    catch 
+    }
+    catch
     {
         console.log("error");
     }
-    
+
 });
 
 heartBtn.addEventListener('click', () => {
@@ -121,25 +135,25 @@ heartBtn.addEventListener('click', () => {
     hearted = !hearted;
 });
 
-favoritesBtn.addEventListener('click', ()=> {
+favoritesBtn.addEventListener('click', () => {
     let favorites = getLocal();
     favoritedDiv.textContent = "";
 
     favorites.map(favName => {
         let p = document.createElement('p');
-        p.textContent = favName;
-        p.className = "text-lg font-medium text-gray-900 dark:text-white";
+        p.textContent = favName.charAt(0).toUpperCase() + favName.slice(1);
+        p.className = "inline-block bg-white mx-3 my-2 px-2 rounded-xl font-kodchasan-medium text-2xl text-gray-800 dark:text-white";
 
         let button = document.createElement('button');
         button.type = "button";
         button.textContent = "X";
         button.className = "text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 dark:hover:bg-gray-600 dark:hover:text-white";
 
-        button.addEventListener('click', ()=> {
+        button.addEventListener('click', () => {
             removeFromLocal(favName);
             p.remove();
         });
-        
+
         p.append(button);
         favoritedDiv.append(p);
     });

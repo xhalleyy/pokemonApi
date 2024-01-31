@@ -5,4 +5,6 @@ Halley Pham
 Pokemon API Challenge
 
 Descriptions: 
-- 1/30: Installed tailwind. Designed the layout. Fetched APIs and got it to show up on the console.
+- 1/29: Installed tailwind. Designed the layout. Fetched APIs and got it to show up on the console.
+- 1/30: Search/ Input field to work and started on the favorites page/drawer. Got Abilities, Moves, Name, and Location to display.
+- 1/31: Evolution path logic.
