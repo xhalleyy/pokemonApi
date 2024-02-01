@@ -46,9 +46,10 @@
                         Favorites
                     </button>
                 </div>
-                <div class="lg:hidden font-kodchasan-medium bg-sky-200 border-2 border-black px-2 rounded-md">
+                <button class="lg:hidden font-kodchasan-medium bg-sky-200 border-2 border-black px-2 rounded-md" type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example"
+                aria-controls="drawer-example">
                     <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 -960 960 960" width="32"><path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/></svg>
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -145,7 +146,7 @@
         class="fixed top-0 left-0 z-40 h-screen p-4 overflow-y-auto transition-transform -translate-x-full bg-sky-200 w-80 dark:bg-gray-800 items-center"
         tabindex="-1" aria-labelledby="drawer-label">
         <h5 id="drawer-label"
-            class="font-kodchasan-semi xl:text-3xl inline-flex items-center mb-4 text-gray-800 dark:text-gray-400 ">
+            class="font-kodchasan-semi text-2xl xl:text-3xl inline-flex items-center mb-4 text-gray-800 dark:text-gray-400 ">
             Favorites
         </h5>
         <button type="button" data-drawer-hide="drawer-example" aria-controls="drawer-example"
@@ -157,7 +158,14 @@
             <span class="sr-only">Close menu</span>
         </button>
 
-        <p id="favoritedDiv" class="mb-6 text-sm text-gray-500 dark:text-gray-400">Pokemon</p>
+        <div id="favoritedDiv" >
+            <!-- <div class="grid grid-cols-2 bg-white my-5 py-1 ps-2 rounded-2xl items-center cursor-pointer">
+                <p class="font-kodchasan-medium col-span-1 text-gray-800 text-2xl">
+                    Pokemon
+                </p>
+                <span class="material-symbols-outlined col-span-1 cursor-pointer text-center text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-2xl text-md w-8 h-8 dark:hover:bg-gray-600 dark:hover:text-white ml-auto me-2">remove</span>
+            </div> -->
+        </div>
         <div class="grid grid-cols-2 gap-4">
             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M1 5h12m0 0L9 1m4 4L9 9" />

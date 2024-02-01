@@ -20,7 +20,6 @@ let hearted;
 let shiny = false;
 
 // API calls
-// pokemonApi grabs basic info but no evolution chain, but gives ID. With that ID, we can search for species. Species links to evolution chain API
 const pokemonApi = async (pokemon) => {
     const promise = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
     const data = await promise.json();
@@ -61,17 +60,14 @@ searchBtn.addEventListener('click', async () => {
             let evolChain = evolution.chain;
 
             evolChain.evolves_to.map(evol1 => {
-                evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
+                if(evol1.evolves_to.length > 0) {
+                    evol1.evolves_to.map(evol2 => {
+                        evolArray.push(`${evolChain.species.name} → ${evol1.species.name} → ${evol2.species.name}`);
+                    })
+                }else {
+                    evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
+                }
             });
-
-            if (evolChain.evolves_to.map(evol1 => evol1.evolves_to).length !== 0) {
-                evolChain.evolves_to.map(evol1 => {
-                    evol1.evolves_to.map(evol2 =>
-                        evolArray.push(evol2.species.name));
-                });
-            }
-
-            console.log(evolArray);
 
             pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
             abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
@@ -120,7 +116,7 @@ searchBtn.addEventListener('click', async () => {
     }
     catch
     {
-        console.log("That wasn't a valid Pokemon! Try Again.");
+        alert("That wasn't a valid Pokemon! Try Again.");
     }
 
 });
@@ -214,15 +210,15 @@ favoritesBtn.addEventListener('click', () => {
 
     favorites.map(favName => {
         let div = document.createElement('div');
-        div.className = "grid grid-cols-2 bg-white rounded-2xl rounded-xl font-kodchasan-medium text-gray-800 dark:text-white items-center justify-between cursor-pointer";
-        div.style.fontSize = "20px";
+        div.className = "grid grid-cols-2 bg-white my-5 py-1 ps-2 rounded-2xl items-center cursor-pointer";
 
         let p = document.createElement('p');
         p.textContent = favName.charAt(0).toUpperCase() + favName.slice(1);
+        p.className = "font-kodchasan-medium col-span-1 text-gray-800 text-2xl";
 
         let span = document.createElement('span');
         span.textContent = "remove";
-        span.className = "material-symbols-outlined cursor-pointer text-center flex items-center text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 dark:hover:bg-gray-600 dark:hover:text-white ml-auto";
+        span.className = "material-symbols-outlined col-span-1 cursor-pointer text-center text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-2xl text-md w-8 h-8 dark:hover:bg-gray-600 dark:hover:text-white ml-auto me-2";
 
         span.addEventListener('click', () => {
             removeFromLocal(favName);

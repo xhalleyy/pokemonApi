@@ -1187,6 +1187,11 @@ input:checked + .toggle-bg {
   margin-right: 1.25rem;
 }
 
+.my-5 {
+  margin-top: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
 .mb-1 {
   margin-bottom: 0.25rem;
 }
@@ -1229,6 +1234,14 @@ input:checked + .toggle-bg {
 
 .mt-5 {
   margin-top: 1.25rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+.me-2 {
+  margin-inline-end: 0.5rem;
 }
 
 .block {
@@ -1659,6 +1672,11 @@ input:checked + .toggle-bg {
   padding-bottom: 1.25rem;
 }
 
+.py-1 {
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
 .ps-1 {
   padding-inline-start: 0.25rem;
 }
@@ -1669,6 +1687,14 @@ input:checked + .toggle-bg {
 
 .pt-3 {
   padding-top: 0.75rem;
+}
+
+.ps-2 {
+  padding-inline-start: 0.5rem;
+}
+
+.pe-2 {
+  padding-inline-end: 0.5rem;
 }
 
 .text-center {
