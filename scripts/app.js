@@ -68,21 +68,18 @@ searchBtn.addEventListener('click', async () => {
         });
 
         if(evolChain.evolves_to.map(evol1 => evol1.evolves_to).length !== 0){
-            evolArray.push('→');
+            // evolArray.push('→');
             evolChain.evolves_to.map(evol1 => {
                 evol1.evolves_to.map(evol2 => 
                     evolArray.push(evol2.species.name));
             });
         }
         
-        console.log(pokemon);
+        // console.log(pokemon);
         // console.log(species);
-        console.log(evolution);
+        // console.log(evolution);
         // console.log(evolChain);
         console.log(evolArray);
-        // <span class="material-symbols-outlined">
-        //     arrow_forward
-        // </span>
 
         pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
         abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
