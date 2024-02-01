@@ -24,23 +24,23 @@
             <div class="tooltip">
                 <img id="randomBtn" class="cursor-pointer" src="../assets/pokeball.png"
                     alt="pokeball image that's a button that grabs a random pokemon" style="height: 65px;">
-                <span class="tooltiptext font-kodchasan-reg xl:text-xl">Random Pokemon</span>
+                <span class="tooltiptext font-kodchasan-reg xl:text-xl text-sm md:text-xl">Random Pokemon</span>
             </div>
             <div class="bg-white rounded-md border-2 border-black">
-                <input id="inputField" text="text" placeholder="Enter a Pokemon"
-                    class="font-kodchasan-semi text-xl md:text-2xl xl:text-3xl ps-1 md:ps-2 text-gray-400 w-44 md:w-56 lg:w-56 xl:w-80">
+                <input id="inputField" text="text" placeholder="Enter a Pokémon"
+                    class="font-kodchasan-semi text-xl md:text-2xl lg:text-xl xl:text-3xl ps-1 xl:ps-2 text-gray-400 w-44 md:w-56 lg:w-44 xl:w-72">
             </div>
             <div id="searchBtn" class="cursor-pointer bg-yellow-200 border-2 border-black px-2 rounded-md mx-1 md:mx-3">
-                <p class="font-kodchasan-medium xl:text-3xl text-2xl hidden lg:block">Search</p>
+                <p class="font-kodchasan-medium lg:text-xl xl:text-3xl text-2xl hidden lg:block">Search</p>
                 <div class="lg:hidden flex justify-center">
                     <span class="material-symbols-outlined" style="font-size: 32px;">
                         search
                         </span>
                 </div>
             </div>
-            <div id="favoritesBtn" class="lg:me-14">
+            <div id="favoritesBtn" class="lg:me-12 xl:me-14">
                 <div class="hidden lg:block">
-                    <button class="font-kodchasan-medium text-2xl xl:text-3xl bg-sky-200 border-2 border-black px-2 rounded-md"
+                    <button class="font-kodchasan-medium text-2xl lg:text-xl xl:text-3xl bg-sky-200 border-2 border-black px-2 rounded-md"
                         type="button" data-drawer-target="drawer-example" data-drawer-show="drawer-example"
                         aria-controls="drawer-example">
                         Favorites
@@ -54,6 +54,7 @@
         </div>
     </div>
 
+    <!-- Pokemon Card and Text -->
     <div class="grid grid-cols-5 mt-5">
         <div class="lg:col-span-2 col-span-5">
             <div class="md:ms-20 lg:me-0 md:me-20 ms-5 me-5 bg-white/90 rounded-lg drop-shadow-xl">
@@ -90,7 +91,7 @@
                 <div id="accordion-flush" class="rounded-lg" data-accordion="collapse"
                     data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
                     data-inactive-classes="text-gray-500 dark:text-gray-400">
-                    <h2 id="accordion-flush-heading-1" class="font-kodchasan-medium xl:text-3xl">
+                    <h2 id="accordion-flush-heading-1" class="font-kodchasan-medium text-xl lg:text-2xl xl:text-3xl">
                         <button type="button"
                             class="flex items-center justify-between w-full py-3 font-medium rtl:text-right text-gray-800 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3 px-5 rounded-t-lg"
                             data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
@@ -105,10 +106,10 @@
                     </h2>
                     <div id="accordion-flush-body-1" class="hidden" aria-labelledby="accordion-flush-heading-1">
                         <div class="py-5 border-b border-gray-200 dark:border-gray-700">
-                            <p id="abilitiesTxt" class="font-kodchasan-reg xl:text-xl mb-2 px-5 text-gray-800 dark:text-gray-400"></p>
+                            <p id="abilitiesTxt" class="font-kodchasan-reg md:text-xl xl:text-2xl mb-2 px-5 text-gray-800 dark:text-gray-400"></p>
                         </div>
                     </div>
-                    <h2 id="accordion-flush-heading-2" class="font-kodchasan-medium xl:text-3xl">
+                    <h2 id="accordion-flush-heading-2" class="font-kodchasan-medium text-xl lg:text-2xl xl:text-3xl">
                         <button type="button"
                             class="flex items-center justify-between w-full py-3 font-medium rtl:text-right text-gray-800 border-b border-gray-200 dark:border-gray-700 dark:text-gray-400 gap-3 px-5 rounded-t-lg"
                             data-accordion-target="#accordion-flush-body-2" aria-expanded="false"
@@ -129,13 +130,13 @@
                 </div>
 
                 <div class="px-5 py-3">
-                    <h2 class="font-kodchasan-medium xl:text-3xl text-gray-800">Location</h2>
-                    <p id="locationTxt" class="font-kodchasan-reg xl:text-xl text-gray-800 dark:text-gray-400 pt-2"></p>
+                    <h2 class="font-kodchasan-medium text-xl lg:text-2xl xl:text-3xl text-gray-800">Location</h2>
+                    <p id="locationTxt" class="font-kodchasan-reg md:text-xl xl:text-2xl text-gray-800 dark:text-gray-400 pt-2"></p>
                 </div>
             </div>
             <div class="bg-sky-200 rounded-lg lg:mt-8 mt-5 mb-4">
-                <div class="px-5 py-3 font-kodchasan-medium xl:text-3xl text-gray-800 dark:text-gray-400">Evolution Paths
-                    <p id="evolutions" class="font-kodchasan-reg xl:text-xl text-gray-800 dark:text-gray-400 pt-2"></p>
+                <div class="px-5 py-3 font-kodchasan-medium text-xl lg:text-2xl xl:text-3xl text-gray-800 dark:text-gray-400">Evolution Paths
+                    <p id="evolutions" class="font-kodchasan-reg lg:text-xl xl:text-2xl text-gray-800 dark:text-gray-400 py-3"></p>
                 </div>
             </div>
         </div>

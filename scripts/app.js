@@ -48,17 +48,19 @@ searchBtn.addEventListener('click', async () => {
 
     try {
 
+        // Save APIs in a variable
         pokemon = await pokemonApi(inputField.value);
         let pokeLocation = await locationApi(pokemon.location_area_encounters);
         let species = await speciesApi(pokemon.species.url);
         let evolution = await evolutionApi(species.evolution_chain.url);
 
         let gens = pokemon.id
-
+        // If the id is less than 650 (GEN 1-5 Pokemons), then this code block will run. If not, there will be an alert
         if (gens < 650) {
             let evolArray = [];
             let evolChain = evolution.chain;
 
+            // EVOLUTION PATH CHAIN: maps through first evolution and checks if there is another evolution.
             evolChain.evolves_to.map(evol1 => {
                 if(evol1.evolves_to.length > 0) {
                     evol1.evolves_to.map(evol2 => {
@@ -69,12 +71,12 @@ searchBtn.addEventListener('click', async () => {
                 }
             });
 
+            // DISPLAYING TEXT
             pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
             abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
-            movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ");
+            movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ").replaceAll('-', ' ');
             elements.textContent = pokemon.types.map(pokeEl => pokeEl.type.name).join(", ");
             pokeImg.src = pokemon.sprites.other["official-artwork"].front_default;
-
 
             if (pokeLocation.length == 0) {
                 locationTxt.textContent = 'Unknown';
@@ -132,22 +134,22 @@ randomBtn.addEventListener('click', async () => {
     let evolArray = [];
     let evolChain = evolution.chain;
 
-    evolChain.evolves_to.map(evol1 => {
-        evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
-    });
-
-    if (evolChain.evolves_to.map(evol1 => evol1.evolves_to).length !== 0) {
-        evolChain.evolves_to.map(evol1 => {
-            evol1.evolves_to.map(evol2 =>
-                evolArray.push(evol2.species.name));
-        });
-    }
+            // EVOLUTION PATH CHAIN: maps through first evolution and checks if there is another evolution.
+            evolChain.evolves_to.map(evol1 => {
+                if(evol1.evolves_to.length > 0) {
+                    evol1.evolves_to.map(evol2 => {
+                        evolArray.push(`${evolChain.species.name} → ${evol1.species.name} → ${evol2.species.name}`);
+                    })
+                }else {
+                    evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
+                }
+            });
 
     console.log(evolArray);
 
     pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
     abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
-    movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ");
+    movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ").replaceAll('-', ' ');
     elements.textContent = pokemon.types.map(pokeEl => pokeEl.type.name).join(", ");
     pokeImg.src = pokemon.sprites.other["official-artwork"].front_default;
 
@@ -234,22 +236,22 @@ favoritesBtn.addEventListener('click', () => {
             let evolArray = [];
             let evolChain = evolution.chain;
 
+            // EVOLUTION PATH CHAIN: maps through first evolution and checks if there is another evolution.
             evolChain.evolves_to.map(evol1 => {
-                evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
+                if(evol1.evolves_to.length > 0) {
+                    evol1.evolves_to.map(evol2 => {
+                        evolArray.push(`${evolChain.species.name} → ${evol1.species.name} → ${evol2.species.name}`);
+                    })
+                }else {
+                    evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
+                }
             });
-
-            if (evolChain.evolves_to.map(evol1 => evol1.evolves_to).length !== 0) {
-                evolChain.evolves_to.map(evol1 => {
-                    evol1.evolves_to.map(evol2 =>
-                        evolArray.push(evol2.species.name));
-                });
-            }
 
             console.log(evolArray);
 
             pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
             abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
-            movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ");
+            movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ").replaceAll('-', ' ');
             elements.textContent = pokemon.types.map(pokeEl => pokeEl.type.name).join(", ");
             pokeImg.src = pokemon.sprites.other["official-artwork"].front_default;
 
@@ -296,3 +298,72 @@ favoritesBtn.addEventListener('click', () => {
     });
 });
 
+const start = async () => {
+    pokemon = await pokemonApi("pikachu");
+        let pokeLocation = await locationApi(pokemon.location_area_encounters);
+        let species = await speciesApi(pokemon.species.url);
+        let evolution = await evolutionApi(species.evolution_chain.url);
+
+        let gens = pokemon.id
+
+        if (gens < 650) {
+            let evolArray = [];
+            let evolChain = evolution.chain;
+
+            evolChain.evolves_to.map(evol1 => {
+                if(evol1.evolves_to.length > 0) {
+                    evol1.evolves_to.map(evol2 => {
+                        evolArray.push(`${evolChain.species.name} → ${evol1.species.name} → ${evol2.species.name}`);
+                    })
+                }else {
+                    evolArray.push(evolChain.species.name + ' → ' + evol1.species.name);
+                }
+            });
+
+            pokeName.textContent = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+            abilitiesTxt.textContent = pokemon.abilities.map(pokeAbility => pokeAbility.ability.name).join(", ");
+            movesTxt.textContent = pokemon.moves.map(pokeMoves => pokeMoves.move.name).join(", ").replaceAll('-', ' ');
+            elements.textContent = pokemon.types.map(pokeEl => pokeEl.type.name).join(", ");
+            pokeImg.src = pokemon.sprites.other["official-artwork"].front_default;
+
+
+            if (pokeLocation.length == 0) {
+                locationTxt.textContent = 'Unknown';
+            } else {
+                locationTxt.textContent = (pokeLocation[0].location_area.name).split('-').join(' ');
+            }
+
+            if (evolChain.evolves_to.length == 0) {
+                evolutions.textContent = 'N/A';
+            } else {
+                evolutions.textContent = evolArray.join(', ');
+            }
+
+            pokeImg.addEventListener('click', () => {
+                if (shiny) {
+                    pokeImg.src = pokemon.sprites.other["official-artwork"].front_shiny;
+                    normalOrShiny.textContent = 'Shiny';
+                    normalOrShiny.classList.remove('bg-blue-200');
+                    normalOrShiny.classList.add('bg-yellow-200');
+                } else {
+                    pokeImg.src = pokemon.sprites.other["official-artwork"].front_default;
+                    normalOrShiny.textContent = 'Default';
+                    normalOrShiny.classList.add('bg-blue-200');
+                    normalOrShiny.classList.remove('bg-yellow-200');
+                }
+                shiny = !shiny;
+            });
+            // if statement witht he conditional hearted = true to keep track if they favorited it or not.
+            hearted = localStorage.getItem("favorited").includes(pokemon.name)
+            if (hearted) {
+                heartBtn.innerHTML = '<path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Z"/>';
+            } else {
+                heartBtn.innerHTML = '<path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z"/>';
+
+            }
+        } else {
+            alert("Please Pick a Pokemon from Gen 1-5!");
+        }
+}
+
+start();
