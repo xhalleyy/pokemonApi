@@ -5,24 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PokéDex</title>
-    <link rel="icon" href="../assets/pokeballtab.png">
-    <link rel="stylesheet" href="/src/output.css">
-    <link rel="stylesheet" href="../styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+    <link rel="icon" href="./assets/pokeballtab.png">
+    <link rel="stylesheet" href="./output.css">
+    <link rel="stylesheet" href="./styles/style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-    <!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0" /> -->
+
 </head>
 
 <body
-    style="background: url(../assets/bulbasaur-3200x2000-12449.jpg) no-repeat center center fixed; background-size: cover;">
+    style="background: url(./assets/bulbasaur-3200x2000-12449.jpg) no-repeat center center fixed; background-size: cover;">
 
     <!-- TITLE AND SEARCH BAR -->
     <div class="grid grid-cols-2 mt-10">
         <div class="ms-6 col-span-2 lg:col-span-1 flex justify-center lg:justify-start">
-            <img src="../assets/title.png" class="xl:w-1/2 lg:w-3/5 md:w-80 w-96 cursor-pointer inline-block " alt="Pokedex Title Logo" onclick="location.href='./index.html'">
+            <img src="./assets/title.png" class="xl:w-1/2 lg:w-3/5 md:w-80 w-96 cursor-pointer inline-block " alt="Pokedex Title Logo" onclick="location.href='./index.html'">
         </div>
         <div class="lg:col-span-1 col-span-2 flex justify-center lg:justify-end items-center">
             <div class="tooltip">
-                <img id="randomBtn" class="cursor-pointer" src="../assets/pokeball.png"
+                <img id="randomBtn" class="cursor-pointer" src="./assets/pokeball.png"
                     alt="pokeball image that's a button that grabs a random pokemon" style="height: 65px;">
                 <span class="tooltiptext font-kodchasan-reg xl:text-xl text-sm md:text-xl">Random Pokemon</span>
             </div>
@@ -174,9 +175,9 @@
         </div>
     </div>
 
-
-    <script src="../node_modules/flowbite/dist/flowbite.min.js"></script>
-    <script type="module" src="../scripts/app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
+    <!-- <script src="../node_modules/flowbite/dist/flowbite.min.js"></script> -->
+    <script type="module" src="./scripts/app.js"></script>
 </body>
 
 </html>
